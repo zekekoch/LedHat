@@ -131,9 +131,7 @@ int setFrontBack(int x, byte r, byte g, byte b)
     setPixel(74,r,g,b);
     setPixel(73,r,g,b);
     setPixel(42,r,g,b);
-    setPixel(41
-    
-    ,r,g,b);
+    setPixel(41,r,g,b);
     setPixel(14,r,g,b);
     setPixel(13,r,g,b);
   }
