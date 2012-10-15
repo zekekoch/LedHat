@@ -1,7 +1,11 @@
   #include <FastSPI_LED.h>
   
   #define NUM_LEDS 90
-  
+  #define PIN 13
+  #define xPin A1
+  #define yPin A2
+  #define zPin A3
+
   // Sometimes chipsets wire in a backwards sort of way
   struct CRGB { unsigned char b; unsigned char r; unsigned char g; };
   // struct CRGB { unsigned char r; unsigned char g; unsigned char b; };
@@ -22,12 +26,6 @@
       {57,42, 28,29,-1, 62},
       {27,14, 0,27,1, 67}
     };
-  
-  #define PIN 13
-  
-  int xPin = A1;
-  int yPin = A2;
-  int zPin = A3;
   
   int serialValue = 0;
   int lightIndex = 0;
@@ -119,7 +117,6 @@
     }
     
     FastSPI_LED.show();
-  
   }
   
   void fadeOld()
@@ -153,17 +150,17 @@
         //Serial.print("row: ");Serial.print(i);Serial.print(" ");Serial.print(x);Serial.println();
         int currentStep = ((x+45)*10)/(strips[i].stepSize);
         
-        if (strips[i].dir = 1)
+        if (strips[i].dir == -1)
         {
           //Serial.print("-> currentStep ");Serial.println(currentStep);
-          setPixel(strips[i].first - currentStep,b,g,r);
-          setPixel(strips[i].last + currentStep,b,g,r);
+          setPixel(strips[i].first + currentStep,r,128,b);
+          setPixel(strips[i].last - currentStep,r,128,b);
         }
         else
         {
           //Serial.print("<- currentStep ");Serial.println(currentStep);
-          setPixel(strips[i].first + currentStep,b,g,r);
-          setPixel(strips[i].last - currentStep,r,g,b);
+          setPixel(strips[i].first + currentStep,r,255,b);
+          setPixel(strips[i].last - currentStep,r,255,b);
         }
      }
   }
